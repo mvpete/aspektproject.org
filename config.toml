@@ -1,6 +1,7 @@
-baseURL = "http://example.org/"
+baseURL = "https://mvpete.github.io//"
 languageCode = "en-us"
 title = "[ASPeKT] Project"
 theme = "aspekt" 
 pygmentsUseClasses = "true"
 pygmentsStyle = "solarized-dark256"
+publishDir = "docs"

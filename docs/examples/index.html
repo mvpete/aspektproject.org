@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i,700,700i" rel="stylesheet">
+
+    
+    <link rel='stylesheet' href='https://mvpete.github.io/css/syntax.css' >
+    
+    
+    <link rel="stylesheet" href="/sass/main.css" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<title>[ASPeKT] Project</title></head>
+    <body><nav class="navbar navbar-expand-sm navbar-default fixed-top bg-light">
+        <a class="navbar-brand text-dark font-weight-bold text-monospace" href="#">
+            [A]
+        </a>
+        
+        
+        <a href='/' class="nav-link text-dark font-weight-bold text-monospace active">Home</a> 
+        
+              
+            <a href="/documentation/" class="nav-link text-dark font-weight-bold text-monospace">
+                
+                <span>Documentation</span>
+            </a>
+              
+            <a href="/examples/" class="nav-link text-dark font-weight-bold text-monospace">
+                
+                <span>Examples</span>
+            </a>
+        
+</nav> 
+
+    <section>
+    <div class="jumbotron">
+        <div class='container'>
+            <h1 id="examples">Examples</h1>
+
+<p>Get going with some simple examples that will show you the basics of aspect oriented programming.</p>
+
+<p><a class='btn btn-outline-primary' href='https://github.com/mvpete/aspekt' role="button">Download Now</a></p>
+
+        </div>
+    </div>
+</section>
+
+<div class='container mb-5'>
+    <h3 id="hello-logging">Hello Logging.</h3>
+
+<div class="highlight"><pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">Aspekt</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">MyFirstAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">Args</span><span class="p">...)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Aspekt Wuz Here&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span> </code></pre></div>
+
+</div>
+
+<footer class="footer">
+    <div class='container'>
+        <div class='muted-credit float-right'>
+            &copy; 2019 [ASPeKT] Project
+        </div>
+    </div>
+</footer><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
