@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+<section>
+    <div class="jumbotron">
+        <div class='container'>
+                {{ .Content }}
+        </div>
+</section>
+
+<div class='container mb-5'>
+    <div class='row'>
+        <div class='col-md-4'>
+            <div class="card h-100" >
+                <div class="card-body">
+                    <h5 class="card-title">Get [ASPeKT]</h5>
+                    <p class="card-text">Freely available on Nuget, everything you need to get started.</p>
+                    <hr/>
+                    <a href="#" class="btn btn-outline-primary">Download</a>
+                </div>
+            </div>
+        </div>
+        <div class='col-md-4'>
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Examples</h5>
+                    <p class="card-text">Get going quickly with some examples.</p>
+                    <hr/>
+                    <a href="#" class="btn btn-outline-primary">Go somewhere</a>
+                </div>
+            </div>
+
+        </div>
+        <div class='col-md-4'>
+                <div class="card h-100" >
+                        <div class="card-body">
+                          <h5 class="card-title">Contribute</h5>
+                          <p class="card-text">Interested in contributing and driving the direction of <b>[ASPeKT]</b>?
+                              <hr/>
+                              Find us on <a href='https://github.com/mvpete/aspekt' >GitHub</a>!
+                         </p>
+                        </div>
+                    </div>
+        </div>
+    </div>
+
+</div>
+
+{{ end }}

@@ -1,0 +1,26 @@
+{{ define "main"}}
+<div class="border-top border-bottom d-lg-none">
+    <div class="container d-flex align-items-center">
+        Outline
+        <button class="btn btn-link ml-auto" data-toggle="collapse" data-target="#documentation-nav" type="button" aria-expanded="false" aria-controls="documentation-nav">
+            <i class="fas fa-hamburger"></i>
+        </button>
+    </div>
+</div>
+<div class="container">
+    <nav id="documentation-nav" class="documentation-nav collapse d-lg-block">
+        <div class="py-3 py-lg-0">
+                {{ range .Site.Menus.documentation }}      
+                <a href="{{ .URL }}" class="nav-link">
+                    <span>{{ .Name }}</span>
+                </a>
+            {{ end }}
+        </div>
+    </nav>
+
+    <article class="documentation-content px-lg-4">
+        {{.Content}}                        
+    </article>
+</div>
+
+{{ end }}

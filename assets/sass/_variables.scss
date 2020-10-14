@@ -1,0 +1,62 @@
+
+// Colors
+
+$primary: #ff7f66;
+$secondary: #2185c5;
+$dark: #3e454c;
+$light:#fff6e5;
+
+$body-bg: $light;
+
+$jumbotron-bg: $dark;
+$jumbotron-color:#fff;
+
+$success: #0ebd8d;
+$info: #7ecefd;
+$warning: #fed380;
+$danger: #e94c2e;
+// Fonts
+
+$headings-font-family: 'Ubuntu Mono', 'Lucida Console', Monaco, monospace;
+$font-family-sans-serif: 'IBM Plex Mono', 'Lucida Console', Monaco, monospace;
+$font-family-monospace: $font-family-sans-serif;
+
+$btn-font-family: $headings-font-family;
+
+$headings-font-weight: 700;
+$btn-font-weight: $headings-font-weight;
+
+$font-size-root: 18px;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+
+$h1-font-size: $font-size-base * 2.78;
+$h2-font-size: $font-size-base * 2.22;
+$h3-font-size: $font-size-base * 1.94;
+$h4-font-size: $font-size-base * 1.67;
+$h5-font-size: $font-size-base * 1.39;
+$h6-font-size: $font-size-base * 1.11;
+
+
+// Styling
+
+$container-max-widths: (
+  sm: 1400px,
+  md: 1400px,
+  lg: 1400px,
+  xl: 1400px
+);
+
+$border-radius-sm:0;
+$border-radius: 0;
+$border-radius-lg:0;
+$box-shadow: none;
+
+$code-bg: black;
+
+$navbar-padding-y: 0.5rem;
+$nav-link-padding-y: 0.5rem;
+
+$navbar-height: $font-size-base * $line-height-base + $nav-link-padding-y * 2 + $navbar-padding-y * 2;
+
+$documentation-nav-width: 18rem;

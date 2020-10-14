@@ -1,0 +1,25 @@
+@import "variables";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+@import "documentation";
+
+html {
+    font-size: $font-size-root;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: $navbar-height;
+}
+
+.footer {
+    margin-top: auto;
+  }
+
+  .chroma { 
+    color: #d0d0d0; 
+    background-color: $dark;
+    padding: $spacer;
+}
