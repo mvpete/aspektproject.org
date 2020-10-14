@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>[ASPeKT] Project</title>
-    <link>https://mvpete.github.io//</link>
+    <link>https://mvpete.github.io/aspektproject.org/</link>
     <description>Recent content on [ASPeKT] Project</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://mvpete.github.io//index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mvpete.github.io/aspektproject.org/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Examples</title>
-      <link>https://mvpete.github.io//examples/</link>
+      <link>https://mvpete.github.io/aspektproject.org/examples/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://mvpete.github.io//examples/</guid>
+      <guid>https://mvpete.github.io/aspektproject.org/examples/</guid>
       <description>Examples Get going with some simple examples that will show you the basics of aspect oriented programming.
 Download Now
  Hello Logging. using Aspekt; class MyFirstAspect : Aspect { public override OnEntry(Args...) { Console.WriteLine(&amp;#34;Aspekt Wuz Here&amp;#34;); } }   </description>
@@ -23,10 +23,10 @@ Download Now
     
     <item>
       <title>Getting Started</title>
-      <link>https://mvpete.github.io//documentation/getting-started/</link>
+      <link>https://mvpete.github.io/aspektproject.org/documentation/getting-started/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://mvpete.github.io//documentation/getting-started/</guid>
+      <guid>https://mvpete.github.io/aspektproject.org/documentation/getting-started/</guid>
       <description>Getting Started Introduction Get started with Aspekt. The lightweight, free and opensource, AOP library. To get started quickly, add Aspekt to a project with NuGet package manager. So let’s begin.</description>
     </item>
     
