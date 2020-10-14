@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Documentation on [ASPeKT] Project</title>
-    <link>https://mvpete.github.io/aspektproject.org/documentation/</link>
+    <link>https://aspektproject.org/documentation/</link>
     <description>Recent content in Documentation on [ASPeKT] Project</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://mvpete.github.io/aspektproject.org/documentation/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://aspektproject.org/documentation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Getting Started</title>
-      <link>https://mvpete.github.io/aspektproject.org/documentation/getting-started/</link>
+      <link>https://aspektproject.org/documentation/getting-started/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://mvpete.github.io/aspektproject.org/documentation/getting-started/</guid>
+      <guid>https://aspektproject.org/documentation/getting-started/</guid>
       <description>Getting Started Introduction Get started with Aspekt. The lightweight, free and opensource, AOP library. To get started quickly, add Aspekt to a project with NuGet package manager. So let’s begin.</description>
     </item>
     

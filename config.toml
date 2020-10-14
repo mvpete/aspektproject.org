@@ -1,4 +1,4 @@
-baseURL = "https://mvpete.github.io/aspektproject.org"
+baseURL = "https://aspektproject.org"
 languageCode = "en-us"
 title = "[ASPeKT] Project"
 theme = "aspekt" 
