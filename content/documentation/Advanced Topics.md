@@ -67,7 +67,7 @@ public class CachingAspect : Aspect,
 
 ## Async/Await Patterns
 
-Aspekt 2.0 provides comprehensive async support:
+Aspekt provides comprehensive async support:
 
 ### Async Interception
 

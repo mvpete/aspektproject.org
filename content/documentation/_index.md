@@ -7,7 +7,7 @@ menu: ["main", "documentation"]
 
 # Aspekt Documentation
 
-Welcome to the comprehensive documentation for Aspekt 2.0, the modern aspect-oriented programming framework for .NET.
+Welcome to the comprehensive documentation for Aspekt, the modern aspect-oriented programming framework for .NET.
 
 ## Quick Navigation
 
