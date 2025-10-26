@@ -105,7 +105,7 @@ body {
         background: linear-gradient(135deg, $dark 0%, lighten($dark, 5%) 100%) !important;
         
         .card-title {
-            color: #fff !important;
+            color: $white !important;
         }
         
         .card-text {
@@ -275,13 +275,13 @@ h2, h3 {
 
 // Better paragraph contrast on light background
 p.lead:not(.jumbotron .lead) {
-    color: #333 !important;
+    color: $text-dark !important;
     text-shadow: none !important;
 }
 
 // Better text-muted contrast
 .text-muted {
-    color: #666 !important;
+    color: $text-muted-custom !important;
 }
 
 // Enhanced badge/shield images
