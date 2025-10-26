@@ -1,12 +1,12 @@
 <section>
     <div class="jumbotron">
         <div class='container'>
-            <h1>[ASPeKT]</h1>
+            <h1>[ASPeKT] 2.0</h1>
             <div class='row'>
                 <div class='col-6'>
-                    <p class="lead">Write cleaner, easier to maintain code. Faster.</p>
+                    <p class="lead">Write cleaner, easier to maintain code. Faster. Now modernized for .NET 8.0.</p>
                     <hr class="my-4">
-                    <p>Open source, cleaner, more declarative, less effort and less boilerplate.</p>
+                    <p>Open source AOP framework with .NET 8.0/6.0 support, nullable reference types, and modern async patterns. Less boilerplate, more productivity.</p>
                     <p class="lead">
                         <a class="btn btn-primary btn-lg" href="examples" role="button">Get Started</a>
                     </p>
@@ -17,12 +17,44 @@
 </section>
 
 <div class='container mb-5'>
+    <div class='row mb-4'>
+        <div class='col-12 text-center'>
+            <h2 class="mb-3">Why Aspekt 2.0?</h2>
+            <p class="lead">Modern .NET, Enhanced Performance, Better Developer Experience</p>
+        </div>
+    </div>
+    <div class='row mb-5'>
+        <div class='col-md-4'>
+            <div class="card h-100 bg-dark text-white border-0" >
+                <div class="card-body d-flex flex-column align-items-start">
+                    <h5 class="card-title">🚀 Modern .NET Support</h5>
+                    <p class="card-text mb-auto">Built for .NET 8.0, .NET 6.0, and .NET Standard 2.1. Cross-platform support for Windows, Linux, and macOS. Nullable reference types enabled.</p>
+                </div>
+            </div>
+        </div>
+        <div class='col-md-4'>
+            <div class="card h-100 bg-dark text-white border-0">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <h5 class="card-title">⚡ High Performance</h5>
+                    <p class="card-text mb-auto">Benefits from latest .NET performance improvements. Efficient IL weaving with minimal runtime overhead. Production-ready logging aspects.</p>
+                </div>
+            </div>
+        </div>
+        <div class='col-md-4'>
+            <div class="card h-100 bg-dark text-white border-0">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <h5 class="card-title">🎯 Easy Integration</h5>
+                    <p class="card-text mb-auto">Simple NuGet installation. Automatic MSBuild integration. Works with existing projects without complex setup or configuration.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class='row'>
         <div class='col-md-4'>
             <div class="card h-100 bg-dark text-white border-0" >
                 <div class="card-body d-flex flex-column align-items-start">
-                    <h5 class="card-title">Get [ASPeKT]</h5>
-                    <p class="card-text mb-auto">Freely available on Nuget, everything you need to get started.</p>
+                    <h5 class="card-title">Get [ASPeKT] 2.0</h5>
+                    <p class="card-text mb-auto">Freely available on NuGet with full source on GitHub. Everything you need to add AOP to your .NET projects.</p>
                     <a href="https://www.nuget.org/packages/Aspekt/" class="btn btn-info d-inline-flex align-items-center mt-3"><i class="fas fa-cloud-download-alt fa-lg mr-2"></i> <span class='align-middle'>Download</span></a>
                 </div>
             </div>
@@ -30,9 +62,9 @@
         <div class='col-md-4'>
             <div class="card h-100 bg-dark text-white border-0">
                 <div class="card-body d-flex flex-column align-items-start">
-                    <h5 class="card-title">Examples</h5>
-                    <p class="card-text mb-auto">Get going quickly with some examples.</p>
-                    <a href="#" class="btn btn-info d-inline-flex align-items-center mt-3"><i class="fas fa-code fa-lg mr-2"></i> Get Going</a>
+                    <h5 class="card-title">Examples & Documentation</h5>
+                    <p class="card-text mb-auto">Comprehensive examples covering logging, contracts, async patterns, performance monitoring, and more.</p>
+                    <a href="/examples" class="btn btn-info d-inline-flex align-items-center mt-3"><i class="fas fa-code fa-lg mr-2"></i> Get Going</a>
                 </div>
             </div>
 
@@ -41,7 +73,7 @@
                 <div class="card h-100 bg-dark text-white border-0" >
                     <div class="card-body d-flex flex-column align-items-start">
                         <h5 class="card-title">Contribute</h5>
-                        <p class="card-text mb-auto">Interested in contributing and driving the direction of <b>[ASPeKT]</b>?</p>
+                        <p class="card-text mb-auto">Interested in contributing and driving the direction of <b>[ASPeKT]</b>? Join us on GitHub!</p>
                         <a href="https://github.com/mvpete/aspekt" class="btn btn-info d-inline-flex align-items-center mt-3"><i class="fab fa-github fa-lg mr-2"></i> GitHub</a>
                         <!-- Find us on <a href='https://github.com/mvpete/aspekt' >GitHub</a>! -->
                     </div>
@@ -49,4 +81,25 @@
         </div>
     </div>
 
+    <div class='row mt-5'>
+        <div class='col-12'>
+            <h3 class="text-center mb-4">Quick Example</h3>
+            <pre class="bg-dark text-white p-4 rounded"><code>// Install via NuGet
+dotnet add package Aspekt
+
+// Create your aspect
+public class LoggingAspect : Aspect
+{
+    public override void OnEntry(MethodArguments args)
+        => Console.WriteLine($"Entering: {args.Name}");
+}
+
+// Apply it to any method
+[LoggingAspect]
+public void ProcessData() 
+{ 
+    // Your code here
+}</code></pre>
+        </div>
+    </div>
 </div>
