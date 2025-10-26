@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8080&amp;path=livereload" data-no-instant defer></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i,700,700i" rel="stylesheet">
 
     
-    <link rel='stylesheet' href='https://aspektproject.org/css/syntax.css' >
+    <link rel='stylesheet' href='http://localhost:8080/css/syntax.css' >
     
     
     <link rel="stylesheet" href="/sass/main.css" >
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <title>[ASPeKT] Project</title></head>
     <body><nav class="navbar navbar-expand-sm navbar-default fixed-top bg-light">
-        <a class="navbar-brand text-dark font-weight-bold text-monospace" href="https://aspektproject.org">
+        <a class="navbar-brand text-dark font-weight-bold text-monospace" href="http://localhost:8080/">
             [A]
         </a>
         
         
-        <a href='https://aspektproject.org' class="nav-link text-dark font-weight-bold text-monospace active">Home</a> 
+        <a href='http://localhost:8080/' class="nav-link text-dark font-weight-bold text-monospace active">Home</a> 
         
               
             <a href="/documentation/" class="nav-link text-dark font-weight-bold text-monospace">
@@ -44,6 +44,10 @@
     <nav id="documentation-nav" class="documentation-nav collapse d-lg-block">
         <div class="py-3 py-lg-0">
                       
+                <a href="/documentation/advanced-topics/" class="nav-link">
+                    <span>Advanced Topics</span>
+                </a>
+                  
                 <a href="/documentation/" class="nav-link">
                     <span>Documentation</span>
                 </a>
@@ -56,13 +60,202 @@
     </nav>
 
     <article class="documentation-content px-lg-4">
-        
-
-<h1 id="getting-started">Getting Started</h1>
-
+        <h1 id="getting-started">Getting Started</h1>
 <h2 id="introduction">Introduction</h2>
-
-<p>Get started with Aspekt. The lightweight, free and opensource, AOP library. To get started quickly, add Aspekt to a project with NuGet package manager. So let’s begin.</p>
+<p>Get started with Aspekt 2.0 - the lightweight, free and open-source AOP library, now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1. Add cross-cutting concerns to your applications with minimal effort and maximum clarity.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>.NET 8.0 SDK, .NET 6.0 SDK, or any .NET Standard 2.1 compatible runtime</li>
+<li>Your favorite IDE (Visual Studio 2022, VS Code, or Rider)</li>
+</ul>
+<h3 id="installation-via-nuget">Installation via NuGet</h3>
+<p>Add Aspekt to your project using the .NET CLI:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dotnet add package Aspekt
+</span></span></code></pre></div><p>Or via Package Manager Console:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Install-Package</span> <span class="n">Aspekt</span>
+</span></span></code></pre></div><p>Or add it directly to your <code>.csproj</code> file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;PackageReference</span> <span class="na">Include=</span><span class="s">&#34;Aspekt&#34;</span> <span class="na">Version=</span><span class="s">&#34;2.0.0&#34;</span> <span class="nt">/&gt;</span>
+</span></span></code></pre></div><h3 id="your-first-aspect">Your First Aspect</h3>
+<ol>
+<li><strong>Create an Aspect Class</strong></li>
+</ol>
+<p>Create a new class that inherits from <code>Aspekt.Aspect</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Aspekt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">SimpleLoggingAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;Method {args.Name} called&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnExit</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;Method {args.Name} completed&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol start="2">
+<li><strong>Apply the Aspect</strong></li>
+</ol>
+<p>Use your aspect as an attribute on any method:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">Calculator</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [SimpleLoggingAspect]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">Add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol start="3">
+<li><strong>Build Your Project</strong></li>
+</ol>
+<p>When you build your project, Aspekt automatically weaves your aspects into the IL code. The weaving happens post-compilation via MSBuild integration.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dotnet build
+</span></span></code></pre></div><ol start="4">
+<li><strong>Run and See the Magic</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">calc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">calc</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Output:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Method Add called</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Method Add completed</span>
+</span></span></code></pre></div><h2 id="understanding-aspect-methods">Understanding Aspect Methods</h2>
+<p>Aspekt provides several interception points:</p>
+<h3 id="onentry">OnEntry</h3>
+<p>Called before the method body executes. Perfect for:</p>
+<ul>
+<li>Logging method entry</li>
+<li>Validating preconditions</li>
+<li>Starting performance timers</li>
+<li>Setting up resources</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Access method name</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;Entering: {args.Name}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Access method arguments</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">arg</span> <span class="k">in</span> <span class="n">args</span><span class="p">.</span><span class="n">Arguments</span><span class="p">.</span><span class="n">Values</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;  Argument: {arg}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="onexit">OnExit</h3>
+<p>Called before any return statement. Perfect for:</p>
+<ul>
+<li>Logging method exit</li>
+<li>Validating postconditions</li>
+<li>Stopping performance timers</li>
+<li>Cleaning up resources</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnExit</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;Exiting: {args.Name}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="onexception">OnException</h3>
+<p>Called when the method throws an exception. Perfect for:</p>
+<ul>
+<li>Logging exceptions</li>
+<li>Error recovery</li>
+<li>Retry logic</li>
+<li>Exception transformation</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnException</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> <span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;Exception in {args.Name}: {e.Message}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Exception is re-thrown automatically after this method</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="modern-async-support">Modern Async Support</h2>
+<p>Aspekt 2.0 includes first-class async support:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">AsyncAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="kd">async</span> <span class="n">ValueTask</span> <span class="n">OnEntryAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">CancellationToken</span> <span class="n">cancellationToken</span> <span class="p">=</span> <span class="k">default</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Console</span><span class="p">.</span><span class="n">Out</span><span class="p">.</span><span class="n">WriteLineAsync</span><span class="p">(</span><span class="s">$&#34;Async entering: {args.Name}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="kd">async</span> <span class="n">ValueTask</span> <span class="n">OnExitAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">CancellationToken</span> <span class="n">cancellationToken</span> <span class="p">=</span> <span class="k">default</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Console</span><span class="p">.</span><span class="n">Out</span><span class="p">.</span><span class="n">WriteLineAsync</span><span class="p">(</span><span class="s">$&#34;Async exiting: {args.Name}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="accessing-method-information">Accessing Method Information</h2>
+<p>The <code>MethodArguments</code> object provides rich information about the intercepted method:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Method name</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">name</span> <span class="p">=</span> <span class="n">args</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Full method signature</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">fullName</span> <span class="p">=</span> <span class="n">args</span><span class="p">.</span><span class="n">FullName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Formatted name for display</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">string</span> <span class="n">formatted</span> <span class="p">=</span> <span class="n">args</span><span class="p">.</span><span class="n">FormattedName</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Access arguments</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Arguments</span> <span class="n">arguments</span> <span class="p">=</span> <span class="n">args</span><span class="p">.</span><span class="n">Arguments</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">count</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">object</span><span class="p">[]</span> <span class="n">values</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">Values</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Get specific argument by index</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">object</span> <span class="n">firstArg</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">GetArgumentByIndex</span><span class="p">(</span><span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Get argument by name</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">object</span> <span class="n">namedArg</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">.</span><span class="n">GetArgumentValueByName</span><span class="p">(</span><span class="s">&#34;paramName&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// The instance being called (null for static methods)</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">object?</span> <span class="n">instance</span> <span class="p">=</span> <span class="n">args</span><span class="p">.</span><span class="n">This</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="next-steps">Next Steps</h2>
+<p>Now that you have the basics:</p>
+<ol>
+<li><strong>Explore Examples</strong>: Check out the <a href="/examples">Examples</a> page for comprehensive use cases</li>
+<li><strong>Learn Contract Programming</strong>: Use <code>Aspekt.Contracts</code> for design-by-contract programming</li>
+<li><strong>Advanced Features</strong>: Implement <code>IAspectExitHandler&lt;T&gt;</code> to intercept and modify return values</li>
+<li><strong>Performance</strong>: Use the built-in <code>LoggingAspect</code> for production-ready logging with performance tracking</li>
+</ol>
+<h2 id="framework-compatibility">Framework Compatibility</h2>
+<p>Aspekt 2.0 supports:</p>
+<ul>
+<li>✅ .NET 8.0 (Long Term Support)</li>
+<li>✅ .NET 6.0 (Long Term Support)</li>
+<li>✅ .NET Standard 2.1 (broad compatibility)</li>
+</ul>
+<p>This means Aspekt works on:</p>
+<ul>
+<li>Windows, Linux, and macOS</li>
+<li>ASP.NET Core applications</li>
+<li>Console applications</li>
+<li>Library projects</li>
+<li>Blazor applications</li>
+<li>Azure Functions (.NET 6+)</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="aspects-not-being-applied">Aspects Not Being Applied</h3>
+<p>If your aspects aren&rsquo;t being woven:</p>
+<ol>
+<li>Ensure you&rsquo;re building the project (weaving happens at build time)</li>
+<li>Check that your aspect class derives from <code>Aspekt.Aspect</code></li>
+<li>Verify the aspect attribute is applied correctly</li>
+<li>Clean and rebuild: <code>dotnet clean &amp;&amp; dotnet build</code></li>
+</ol>
+<h3 id="build-warnings">Build Warnings</h3>
+<p>If you see weaving warnings, you can suppress specific warnings:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="na">[IgnoreAspectWarning(1001, 1002)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">void</span> <span class="n">MyMethod</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span></code></pre></div><h2 id="getting-help">Getting Help</h2>
+<ul>
+<li>📖 <strong>Documentation</strong>: Read through examples and this guide</li>
+<li>🐛 <strong>Issues</strong>: Report bugs on <a href="https://github.com/mvpete/aspekt/issues">GitHub Issues</a></li>
+<li>💬 <strong>Discussions</strong>: Ask questions on <a href="https://github.com/mvpete/aspekt/discussions">GitHub Discussions</a></li>
+<li>📦 <strong>NuGet</strong>: Check the <a href="https://www.nuget.org/packages/Aspekt/">Aspekt NuGet page</a></li>
+</ul>
+<p>Happy aspect weaving! 🎯</p>
                         
     </article>
 </div>
