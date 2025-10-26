@@ -1,6 +1,7 @@
 # Hugo build artifacts
 resources/_gen/
 .hugo_build.lock
+hugo
 
 # Dependencies
 node_modules/
