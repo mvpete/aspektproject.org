@@ -17,13 +17,17 @@ body {
 
 .footer {
     margin-top: auto;
-    background-color: $dark;
+    background: linear-gradient(135deg, darken($dark, 5%) 0%, $dark 100%);
     color: rgba(255, 255, 255, 0.7);
+    border-top: 3px solid $primary;
     
     a {
         color: $info;
+        transition: all 0.3s ease;
         &:hover {
             color: lighten($info, 10%);
+            transform: translateX(5px);
+            display: inline-block;
         }
     }
 }
@@ -35,31 +39,168 @@ body {
 }
 
 .jumbotron {
-    padding: 4rem 0;
-    min-height: 500px;
+    padding: 6rem 0;
+    min-height: 550px;
     display: flex;
     align-items: center;
+    background: linear-gradient(135deg, $dark 0%, lighten($dark, 8%) 100%);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 50%, rgba($primary, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba($secondary, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    
+    h1 {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, $primary 0%, lighten($primary, 15%) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 }
 
 .card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    overflow: hidden;
+    position: relative;
+    
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.5s ease;
+    }
     
     &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2) !important;
+        border-color: rgba($primary, 0.3);
+        
+        &::before {
+            left: 100%;
+        }
+    }
+    
+    &.bg-dark {
+        background: linear-gradient(135deg, $dark 0%, lighten($dark, 5%) 100%) !important;
+    }
+    
+    &.bg-white {
+        background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%) !important;
     }
 }
 
 .btn {
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border-width: 2px;
+    
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+    }
     
     &:hover {
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        
+        &::before {
+            width: 300px;
+            height: 300px;
+        }
+    }
+    
+    &:active {
+        transform: translateY(-1px);
+    }
+    
+    &.btn-primary {
+        background: linear-gradient(135deg, $primary 0%, lighten($primary, 10%) 100%);
+        border-color: $primary;
+        
+        &:hover {
+            background: linear-gradient(135deg, lighten($primary, 5%) 0%, lighten($primary, 15%) 100%);
+        }
+    }
+    
+    &.btn-info {
+        background: linear-gradient(135deg, $info 0%, lighten($info, 10%) 100%);
+        border-color: $info;
+        
+        &:hover {
+            background: linear-gradient(135deg, lighten($info, 5%) 0%, lighten($info, 15%) 100%);
+        }
     }
 }
 
 .navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    background: rgba(255, 246, 229, 0.98) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-bottom: 2px solid rgba($primary, 0.2);
+    
+    .navbar-brand {
+        transition: all 0.3s ease;
+        
+        &:hover {
+            color: $primary !important;
+            transform: scale(1.05);
+        }
+    }
+    
+    .nav-link {
+        position: relative;
+        transition: all 0.3s ease;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, $primary, $secondary);
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        &:hover {
+            color: $primary !important;
+            
+            &::after {
+                width: 80%;
+            }
+        }
+    }
 }
 
 .gap-3 {
@@ -67,10 +208,55 @@ body {
 }
 
 pre {
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba($primary, 0.2);
 }
 
 .shadow-sm {
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1) !important;
+}
+
+// Modern section styling
+section {
+    position: relative;
+}
+
+h2, h3 {
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, $primary, $secondary);
+        border-radius: 2px;
+    }
+}
+
+.lead {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+// Statistic numbers styling
+.display-4 {
+    font-weight: 700;
+    background: linear-gradient(135deg, currentColor 0%, lighten($primary, 20%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// Enhanced badge/shield images
+img[src*="shields.io"], img[src*="img.shields.io"] {
+    transition: transform 0.3s ease;
+    
+    &:hover {
+        transform: scale(1.05);
+    }
 }
