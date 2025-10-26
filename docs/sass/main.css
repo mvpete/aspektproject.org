@@ -7001,7 +7001,8 @@ a.text-dark:hover, a.text-dark:focus {
     margin-left: 18rem; } }
 
 html {
-  font-size: 18px; }
+  font-size: 18px;
+  scroll-behavior: smooth; }
 
 body {
   display: flex;
@@ -7010,9 +7011,45 @@ body {
   padding-top: 3.6rem; }
 
 .footer {
-  margin-top: auto; }
+  margin-top: auto;
+  background-color: #3e454c;
+  color: rgba(255, 255, 255, 0.7); }
+  .footer a {
+    color: #7ecefd; }
+    .footer a:hover {
+      color: #b0e1fe; }
 
 .chroma {
   color: #d0d0d0;
   background-color: #3e454c;
   padding: 1rem; }
+
+.jumbotron {
+  padding: 4rem 0;
+  min-height: 500px;
+  display: flex;
+  align-items: center; }
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; }
+
+.btn {
+  transition: all 0.2s ease; }
+  .btn:hover {
+    transform: translateY(-2px); }
+
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+
+.gap-3 {
+  gap: 1rem !important; }
+
+pre {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important; }

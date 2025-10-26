@@ -1,0 +1,21 @@
+# Hugo build artifacts
+resources/_gen/
+.hugo_build.lock
+
+# Dependencies
+node_modules/
+
+# Build output
+public/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.tar.gz
+*.log

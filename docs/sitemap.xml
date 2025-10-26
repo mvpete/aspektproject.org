@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:8080/documentation/advanced-topics/</loc>
+    <loc>https://aspektproject.org/documentation/advanced-topics/</loc>
   </url><url>
-    <loc>http://localhost:8080/</loc>
+    <loc>https://aspektproject.org/</loc>
   </url><url>
-    <loc>http://localhost:8080/categories/</loc>
+    <loc>https://aspektproject.org/categories/</loc>
   </url><url>
-    <loc>http://localhost:8080/documentation/</loc>
+    <loc>https://aspektproject.org/documentation/</loc>
   </url><url>
-    <loc>http://localhost:8080/examples/</loc>
+    <loc>https://aspektproject.org/examples/</loc>
   </url><url>
-    <loc>http://localhost:8080/documentation/getting-started/</loc>
+    <loc>https://aspektproject.org/documentation/getting-started/</loc>
   </url><url>
-    <loc>http://localhost:8080/tags/</loc>
+    <loc>https://aspektproject.org/tags/</loc>
   </url>
 </urlset>

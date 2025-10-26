@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8080&amp;path=livereload" data-no-instant defer></script>
+<head>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i,700,700i" rel="stylesheet">
 
     
-    <link rel='stylesheet' href='http://localhost:8080/css/syntax.css' >
+    <link rel='stylesheet' href='https://aspektproject.org/css/syntax.css' >
     
     
     <link rel="stylesheet" href="/sass/main.css" >
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <title>[ASPeKT] Project</title></head>
     <body><nav class="navbar navbar-expand-sm navbar-default fixed-top bg-light">
-        <a class="navbar-brand text-dark font-weight-bold text-monospace" href="http://localhost:8080/">
+        <a class="navbar-brand text-dark font-weight-bold text-monospace" href="https://aspektproject.org/">
             [A]
         </a>
         
         
-        <a href='http://localhost:8080/' class="nav-link text-dark font-weight-bold text-monospace active">Home</a> 
+        <a href='https://aspektproject.org/' class="nav-link text-dark font-weight-bold text-monospace active">Home</a> 
         
               
             <a href="/documentation/" class="nav-link text-dark font-weight-bold text-monospace">
@@ -60,14 +60,76 @@
     </nav>
 
     <article class="documentation-content px-lg-4">
-                                
+        <h1 id="aspekt-documentation">Aspekt Documentation</h1>
+<p>Welcome to the comprehensive documentation for Aspekt 2.0, the modern aspect-oriented programming framework for .NET.</p>
+<h2 id="quick-navigation">Quick Navigation</h2>
+<h3 id="getting-started">Getting Started</h3>
+<p>Learn the basics of Aspekt and create your first aspect in minutes.</p>
+<ul>
+<li><a href="/documentation/getting-started">Installation &amp; Setup</a></li>
+<li><a href="/documentation/getting-started#core-concepts">Core Concepts</a></li>
+<li><a href="/documentation/getting-started#first-aspect">Your First Aspect</a></li>
+</ul>
+<h3 id="advanced-topics">Advanced Topics</h3>
+<p>Deep dive into advanced features and patterns.</p>
+<ul>
+<li><a href="/documentation/advanced-topics#async-aspects">Async Aspects</a></li>
+<li><a href="/documentation/advanced-topics#generics">Generic Type Support</a></li>
+<li><a href="/documentation/advanced-topics#performance">Performance Optimization</a></li>
+</ul>
+<h3 id="key-features">Key Features</h3>
+<h4 id="-declarative-programming">🎯 Declarative Programming</h4>
+<p>Apply cross-cutting concerns using simple attributes on your methods and classes.</p>
+<h4 id="-lifecycle-hooks">🔄 Lifecycle Hooks</h4>
+<p>Intercept method execution at multiple points:</p>
+<ul>
+<li><code>OnEntry</code> - Before method execution</li>
+<li><code>OnExit</code> - After successful execution</li>
+<li><code>OnException</code> - When exceptions occur</li>
+<li><code>OnSuccess</code> - After successful completion with return value</li>
+</ul>
+<h4 id="-modern-net-support">🚀 Modern .NET Support</h4>
+<ul>
+<li>.NET 8.0 / 6.0 / Standard 2.1</li>
+<li>Nullable reference types</li>
+<li>Async/await patterns</li>
+<li>Record types and init properties</li>
+</ul>
+<h4 id="-built-in-aspects">📦 Built-in Aspects</h4>
+<ul>
+<li>Contract validation (Requires, Ensures)</li>
+<li>Performance monitoring</li>
+<li>Retry policies</li>
+<li>Caching helpers</li>
+</ul>
+<h2 id="community--support">Community &amp; Support</h2>
+<ul>
+<li><strong>GitHub Issues</strong>: <a href="https://github.com/mvpete/aspekt/issues">Report bugs or request features</a></li>
+<li><strong>Discussions</strong>: <a href="https://github.com/mvpete/aspekt/discussions">Ask questions and share ideas</a></li>
+<li><strong>Source Code</strong>: <a href="https://github.com/mvpete/aspekt">View and contribute on GitHub</a></li>
+</ul>
+<h2 id="contributing">Contributing</h2>
+<p>Aspekt is open source and welcomes contributions! Check out our <a href="https://github.com/mvpete/aspekt/blob/master/CONTRIBUTING.md">contribution guidelines</a> to get started.</p>
+                        
     </article>
 </div>
 
-<footer class="footer">
+<footer class="footer mt-5 py-4">
     <div class='container'>
-        <div class='muted-credit float-right'>
-            &copy; 2020 [ASPeKT] Project
+        <div class='row'>
+            <div class='col-md-6'>
+                <p class="mb-1"><strong>[ASPeKT]</strong> - Modern AOP for .NET</p>
+                <p class="text-muted small">Open source aspect-oriented programming framework</p>
+            </div>
+            <div class='col-md-6 text-md-end'>
+                <p class="mb-1">
+                    <a href="https://github.com/mvpete/aspekt" class="text-decoration-none me-3">GitHub</a>
+                    <a href="https://www.nuget.org/packages/Aspekt/" class="text-decoration-none">NuGet</a>
+                </p>
+                <p class='text-muted small mb-0'>
+                    &copy; 2020-2025 [ASPeKT] Project
+                </p>
+            </div>
         </div>
     </div>
 </footer><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
