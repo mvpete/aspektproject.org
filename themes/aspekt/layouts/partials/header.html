@@ -1,17 +1,31 @@
-<nav class="navbar navbar-expand-sm navbar-default fixed-top bg-light">
-        <a class="navbar-brand text-dark font-weight-bold text-monospace" href="{{ .Site.BaseURL }}">
-            [A]
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand text-dark fw-bold font-monospace fs-4" href="{{ .Site.BaseURL }}">
+            [ASPeKT]
         </a>
-        <!--TODO Site Nav-->
-        <!-- 
-        <a href='#' class="navbar-brand text-dark font-weight-bold text-monospace">Documentation</a>
-        <a href='#' class="navbar-brand text-dark font-weight-bold text-monospace">Examples</a> -->
-        <a href='{{ .Site.BaseURL }}' class="nav-link text-dark font-weight-bold text-monospace active">Home</a> 
-        {{ $currentPage := . }}
-        {{ range .Site.Menus.main }}      
-            <a href="{{ .URL }}" class="nav-link text-dark font-weight-bold text-monospace">
-                {{ .Pre }}
-                <span>{{ .Name }}</span>
-            </a>
-        {{ end }}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href='{{ .Site.BaseURL }}' class="nav-link text-dark fw-bold font-monospace">Home</a>
+                </li>
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}      
+                <li class="nav-item">
+                    <a href="{{ .URL }}" class="nav-link text-dark fw-bold font-monospace">
+                        {{ .Pre }}
+                        <span>{{ .Name }}</span>
+                    </a>
+                </li>
+                {{ end }}
+                <li class="nav-item">
+                    <a href="https://github.com/mvpete/aspekt" class="nav-link text-dark fw-bold font-monospace" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav> 
