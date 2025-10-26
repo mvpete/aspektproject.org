@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i,700,700i" rel="stylesheet">
+
+    
+    <link rel='stylesheet' href='https://aspektproject.org/css/syntax.css' >
+    
+    
+    <link rel="stylesheet" href="/sass/main.css" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>[ASPeKT] Project - Advanced Topics</title></head>
+<body><nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand text-dark fw-bold font-monospace fs-4" href="https://aspektproject.org/">
+            [ASPeKT]
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href='https://aspektproject.org/' class="nav-link text-dark fw-bold font-monospace">Home</a>
+                </li>
+                
+                      
+                <li class="nav-item">
+                    <a href="/documentation/" class="nav-link text-dark fw-bold font-monospace">
+                        
+                        <span>Documentation</span>
+                    </a>
+                </li>
+                      
+                <li class="nav-item">
+                    <a href="/examples/" class="nav-link text-dark fw-bold font-monospace">
+                        
+                        <span>Examples</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/mvpete/aspekt" class="nav-link text-dark fw-bold font-monospace" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> 
+
+<div class="border-top border-bottom d-lg-none">
+    <div class="container d-flex align-items-center">
+        Outline
+        <button class="btn btn-link ml-auto" data-toggle="collapse" data-target="#documentation-nav" type="button" aria-expanded="false" aria-controls="documentation-nav">
+            <i class="fas fa-hamburger"></i>
+        </button>
+    </div>
+</div>
+<div class="container">
+    <nav id="documentation-nav" class="documentation-nav collapse d-lg-block">
+        <div class="py-3 py-lg-0">
+                      
+                <a href="/documentation/advanced-topics/" class="nav-link">
+                    <span>Advanced Topics</span>
+                </a>
+                  
+                <a href="/documentation/" class="nav-link">
+                    <span>Documentation</span>
+                </a>
+                  
+                <a href="/documentation/getting-started/" class="nav-link">
+                    <span>Getting Started</span>
+                </a>
+            
+        </div>
+    </nav>
+
+    <article class="documentation-content px-lg-4">
+        <h1 id="advanced-topics">Advanced Topics</h1>
+<h2 id="return-value-interception">Return Value Interception</h2>
+<p>Implement <code>IAspectExitHandler&lt;T&gt;</code> to intercept and modify return values:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Aspekt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ValidationAspect</span> <span class="p">:</span> <span class="n">Aspect</span><span class="p">,</span> <span class="n">IAspectExitHandler</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">OnExit</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> <span class="kt">string</span> <span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Validate or transform the return value</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;Default Value&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="p">.</span><span class="n">Trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">DataService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [ValidationAspect]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">GetUserName</span><span class="p">(</span><span class="kt">int</span> <span class="n">userId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Your implementation</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;  John Doe  &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Returns: &#34;John Doe&#34; (trimmed)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="multiple-aspect-handlers">Multiple Aspect Handlers</h2>
+<p>A single aspect can handle multiple return types:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">CachingAspect</span> <span class="p">:</span> <span class="n">Aspect</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">IAspectExitHandler</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">IAspectExitHandler</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">object</span><span class="p">&gt;</span> <span class="n">cache</span> <span class="p">=</span> <span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">string</span> <span class="n">OnExit</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> <span class="kt">string</span> <span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cache</span><span class="p">[</span><span class="n">args</span><span class="p">.</span><span class="n">FullName</span><span class="p">]</span> <span class="p">=</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">OnExit</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> <span class="kt">int</span> <span class="n">result</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cache</span><span class="p">[</span><span class="n">args</span><span class="p">.</span><span class="n">FullName</span><span class="p">]</span> <span class="p">=</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="asyncawait-patterns">Async/Await Patterns</h2>
+<p>Aspekt provides comprehensive async support:</p>
+<h3 id="async-interception">Async Interception</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">AsyncTimingAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="n">Stopwatch</span><span class="p">&gt;</span> <span class="n">timers</span> <span class="p">=</span> <span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="kd">async</span> <span class="n">ValueTask</span> <span class="n">OnEntryAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">CancellationToken</span> <span class="n">cancellationToken</span> <span class="p">=</span> <span class="k">default</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">timer</span> <span class="p">=</span> <span class="n">Stopwatch</span><span class="p">.</span><span class="n">StartNew</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">timers</span><span class="p">[</span><span class="n">args</span><span class="p">.</span><span class="n">FullName</span><span class="p">]</span> <span class="p">=</span> <span class="n">timer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Console</span><span class="p">.</span><span class="n">Out</span><span class="p">.</span><span class="n">WriteLineAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="s">$&#34;[{DateTime.Now:HH:mm:ss}] Starting async operation: {args.Name}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="kd">async</span> <span class="n">ValueTask</span> <span class="n">OnExitAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">CancellationToken</span> <span class="n">cancellationToken</span> <span class="p">=</span> <span class="k">default</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">timers</span><span class="p">.</span><span class="n">TryGetValue</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">FullName</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">timer</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">timer</span><span class="p">.</span><span class="n">Stop</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">await</span> <span class="n">Console</span><span class="p">.</span><span class="n">Out</span><span class="p">.</span><span class="n">WriteLineAsync</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="s">$&#34;[{DateTime.Now:HH:mm:ss}] Completed {args.Name} in {timer.ElapsedMilliseconds}ms&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">timers</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">FullName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="task-continuations">Task Continuations</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">TaskContinuationAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnExit</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// This works with both sync and async methods</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;Method {args.Name} completed&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">AsyncService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [TaskContinuationAspect]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">FetchDataAsync</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">Delay</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Data&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// OnExit is called after the task completes</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="contract-programming">Contract Programming</h2>
+<h3 id="precondition-validation">Precondition Validation</h3>
+<p>Validate method inputs using the <code>RequiresArgumentAttribute</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Aspekt.Contracts</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">PaymentService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Validate amount is positive</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [RequiresArgument(&#34;amount&#34;, typeof(decimal), 
+</span></span></span><span class="line"><span class="cl"><span class="na">        Contract.Comparison.GreaterThan, 0)]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">ProcessPayment</span><span class="p">(</span><span class="kt">decimal</span> <span class="n">amount</span><span class="p">,</span> <span class="kt">string</span> <span class="n">currency</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// amount is guaranteed to be &gt; 0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Validate string is not null or empty</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [RequiresArgument(&#34;email&#34;, typeof(string), 
+</span></span></span><span class="line"><span class="cl"><span class="na">        Contract.Constraint.NotNullOrEmpty)]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">SendReceipt</span><span class="p">(</span><span class="kt">string</span> <span class="n">email</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// email is guaranteed to be valid</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Multiple constraints</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [RequiresArgument(&#34;age&#34;, typeof(int), 
+</span></span></span><span class="line"><span class="cl"><span class="na">        Contract.Comparison.GreaterThanOrEqual, 18)]</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [RequiresArgument(&#34;age&#34;, typeof(int), 
+</span></span></span><span class="line"><span class="cl"><span class="na">        Contract.Comparison.LessThan, 120)]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">RegisterAdult</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// age is guaranteed to be between 18 and 119</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="postcondition-validation">Postcondition Validation</h3>
+<p>Use <code>EnsureAttribute</code> to validate method results:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Aspekt.Contracts</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">InventoryService</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [Ensure(typeof(int), Contract.Comparison.GreaterThanOrEqual, 0)]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="n">GetStockLevel</span><span class="p">(</span><span class="kt">string</span> <span class="n">productId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Return value must be &gt;= 0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Database</span><span class="p">.</span><span class="n">GetStock</span><span class="p">(</span><span class="n">productId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="class-invariants">Class Invariants</h3>
+<p>Maintain class invariants across method calls:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Aspekt.Contracts</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">BankAccount</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [FieldInvariant(Contract.Comparison.GreaterThanOrEqual, 0)]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">decimal</span> <span class="n">balance</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">Withdraw</span><span class="p">(</span><span class="kt">decimal</span> <span class="n">amount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">balance</span> <span class="p">-=</span> <span class="n">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Invariant automatically checked after method</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Will throw if balance &lt; 0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">Deposit</span><span class="p">(</span><span class="kt">decimal</span> <span class="n">amount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">balance</span> <span class="p">+=</span> <span class="n">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Invariant checked here too</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="performance-optimization">Performance Optimization</h2>
+<h3 id="conditional-weaving">Conditional Weaving</h3>
+<p>Skip aspect execution based on conditions:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">ConditionalLoggingAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="kt">bool</span> <span class="n">enabled</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ConditionalLoggingAspect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">enabled</span> <span class="p">=</span> <span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">enabled</span> <span class="p">=</span> <span class="n">enabled</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(!</span><span class="n">enabled</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;Entering: {args.Name}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Enable/disable per method</span>
+</span></span><span class="line"><span class="cl"><span class="na">[ConditionalLogging(enabled: false)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">void</span> <span class="n">HighPerformanceMethod</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</span></span></code></pre></div><h3 id="aspect-composition">Aspect Composition</h3>
+<p>Combine aspects efficiently:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Base aspect for common functionality</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="k">class</span> <span class="nc">BaseAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="k">void</span> <span class="n">LogMessage</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&#34;[{DateTime.Now:HH:mm:ss.fff}] {message}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Specialized aspects inherit common functionality</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">DetailedLoggingAspect</span> <span class="p">:</span> <span class="n">BaseAspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LogMessage</span><span class="p">(</span><span class="s">$&#34;Entering {args.Name} with {args.Arguments.Count} arguments&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">SimpleLoggingAspect</span> <span class="p">:</span> <span class="n">BaseAspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LogMessage</span><span class="p">(</span><span class="s">$&#34;Entering {args.Name}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="testing-with-aspects">Testing with Aspects</h2>
+<h3 id="unit-testing-aspects">Unit Testing Aspects</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Microsoft.VisualStudio.TestTools.UnitTesting</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[TestClass]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">LoggingAspectTests</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [TestMethod]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">OnEntry_LogsMethodName</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Arrange</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">aspect</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LoggingAspect</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">args</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MethodArguments</span><span class="p">(</span><span class="s">&#34;TestMethod&#34;</span><span class="p">,</span> <span class="s">&#34;Full.TestMethod&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Arguments</span><span class="p">(</span><span class="n">Array</span><span class="p">.</span><span class="n">Empty</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;()),</span> <span class="kc">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">using</span> <span class="nn">var</span> <span class="n">writer</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StringWriter</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Console</span><span class="p">.</span><span class="n">SetOut</span><span class="p">(</span><span class="n">writer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// Act</span>
+</span></span><span class="line"><span class="cl">        <span class="n">aspect</span><span class="p">.</span><span class="n">OnEntry</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// Assert</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Assert</span><span class="p">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="n">writer</span><span class="p">.</span><span class="n">ToString</span><span class="p">().</span><span class="n">Contains</span><span class="p">(</span><span class="s">&#34;TestMethod&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="integration-testing">Integration Testing</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="na">[TestClass]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">AspectIntegrationTests</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">    [TestMethod]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="k">void</span> <span class="n">WovenMethod_CallsAspect</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Arrange</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">service</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MyService</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// Act - method has aspect applied</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">service</span><span class="p">.</span><span class="n">ProcessData</span><span class="p">(</span><span class="m">42</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// Assert - verify aspect was executed</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Assert</span><span class="p">.</span><span class="n">IsNotNull</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="m">42</span><span class="p">,</span> <span class="n">MyLoggingAspect</span><span class="p">.</span><span class="n">LastCapturedArgument</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="custom-aspect-attributes">Custom Aspect Attributes</h2>
+<p>Create reusable aspect configurations:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Custom attribute that applies multiple aspects</span>
+</span></span><span class="line"><span class="cl"><span class="na">[AttributeUsage(AttributeTargets.Method)]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">AuditableAttribute</span> <span class="p">:</span> <span class="n">Attribute</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// This could be expanded to apply multiple aspects</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Specialized logging attribute</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">DebugLogAttribute</span> <span class="p">:</span> <span class="n">LoggingAspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">DebugLogAttribute</span><span class="p">()</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logLevel</span><span class="p">:</span> <span class="n">Levels</span><span class="p">.</span><span class="n">Debug</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logParameters</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logExecutionTime</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Usage</span>
+</span></span><span class="line"><span class="cl"><span class="na">[DebugLog]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">void</span> <span class="n">ComplexOperation</span><span class="p">(</span><span class="kt">int</span> <span class="k">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Automatically logged with debug level</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="best-practices">Best Practices</h2>
+<h3 id="1-keep-aspects-focused">1. Keep Aspects Focused</h3>
+<p>Each aspect should handle one concern:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">// Good: Focused on one responsibility</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">PerformanceLoggingAspect</span> <span class="p">:</span> <span class="n">Aspect</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">SecurityAuditAspect</span> <span class="p">:</span> <span class="n">Aspect</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Avoid: Multiple responsibilities</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">EverythingAspect</span> <span class="p">:</span> <span class="n">Aspect</span> <span class="p">{</span> <span class="p">}</span> <span class="c1">// Don&#39;t do this</span>
+</span></span></code></pre></div><h3 id="2-handle-exceptions-carefully">2. Handle Exceptions Carefully</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">SafeAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnException</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">,</span> <span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Log or handle the exception</span>
+</span></span><span class="line"><span class="cl">            <span class="n">LogException</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">catch</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Never throw from OnException</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// The original exception will be re-thrown</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="3-consider-performance-impact">3. Consider Performance Impact</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">EfficientAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Cache expensive operations</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="k">readonly</span> <span class="n">ConcurrentDictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">cache</span> <span class="p">=</span> <span class="k">new</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Minimal overhead</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">IsLoggingEnabled</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">QuickLog</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="4-use-dependency-injection">4. Use Dependency Injection</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">public</span> <span class="k">class</span> <span class="nc">InjectedLoggingAspect</span> <span class="p">:</span> <span class="n">Aspect</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="k">readonly</span> <span class="n">ILogger</span> <span class="n">logger</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">InjectedLoggingAspect</span><span class="p">(</span><span class="n">ILogger</span> <span class="n">logger</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="n">logger</span> <span class="p">=</span> <span class="n">logger</span> <span class="p">??</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">ArgumentNullException</span><span class="p">(</span><span class="n">nameof</span><span class="p">(</span><span class="n">logger</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">override</span> <span class="k">void</span> <span class="n">OnEntry</span><span class="p">(</span><span class="n">MethodArguments</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">logger</span><span class="p">.</span><span class="n">LogInformation</span><span class="p">(</span><span class="s">$&#34;Entering {args.Name}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<p><strong>Aspect Not Executing</strong></p>
+<ul>
+<li>Verify the project builds successfully</li>
+<li>Check that the method is not inlined by the compiler</li>
+<li>Ensure the aspect class is public and derives from <code>Aspect</code></li>
+</ul>
+<p><strong>Performance Issues</strong></p>
+<ul>
+<li>Profile aspect overhead with a simple stopwatch</li>
+<li>Consider conditional weaving for high-frequency methods</li>
+<li>Cache expensive operations in aspect constructors</li>
+</ul>
+<p><strong>Async Issues</strong></p>
+<ul>
+<li>Use <code>OnEntryAsync</code>/<code>OnExitAsync</code> for async-specific logic</li>
+<li>Remember that <code>OnExit</code> is called after async methods complete</li>
+<li>Handle cancellation tokens properly</li>
+</ul>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="/examples">Examples</a> - Comprehensive code examples</li>
+<li><a href="/documentation/getting-started">Getting Started</a> - Basic setup and usage</li>
+<li><a href="https://github.com/mvpete/aspekt">GitHub Repository</a> - Source code and issues</li>
+<li><a href="https://www.nuget.org/packages/Aspekt/">NuGet Package</a> - Latest releases</li>
+</ul>
+                        
+    </article>
+</div>
+
+<footer class="footer mt-5 py-4">
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-6'>
+                <p class="mb-1"><strong>[ASPeKT]</strong> - Modern AOP for .NET</p>
+                <p class="text-muted small">Open source aspect-oriented programming framework</p>
+            </div>
+            <div class='col-md-6 text-md-end'>
+                <p class="mb-1">
+                    <a href="https://github.com/mvpete/aspekt" class="text-decoration-none me-3">GitHub</a>
+                    <a href="https://www.nuget.org/packages/Aspekt/" class="text-decoration-none">NuGet</a>
+                </p>
+                <p class='text-muted small mb-0'>
+                    &copy; 2020-2025 [ASPeKT] Project
+                </p>
+            </div>
+        </div>
+    </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

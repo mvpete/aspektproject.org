@@ -8,7 +8,7 @@ menu: "documentation"
 # Getting Started
 
 ## Introduction
-Get started with Aspekt 2.0 - the lightweight, free and open-source AOP library, now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1. Add cross-cutting concerns to your applications with minimal effort and maximum clarity.
+Get started with Aspekt - the lightweight, free and open-source AOP library, now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1. Add cross-cutting concerns to your applications with minimal effort and maximum clarity.
 
 ## Quick Start
 
@@ -148,7 +148,7 @@ public override void OnException(MethodArguments args, Exception e)
 
 ## Modern Async Support
 
-Aspekt 2.0 includes first-class async support:
+Aspekt includes first-class async support:
 
 ```csharp
 public class AsyncAspect : Aspect
@@ -212,7 +212,7 @@ Now that you have the basics:
 
 ## Framework Compatibility
 
-Aspekt 2.0 supports:
+Aspekt supports:
 - ✅ .NET 8.0 (Long Term Support)
 - ✅ .NET 6.0 (Long Term Support)  
 - ✅ .NET Standard 2.1 (broad compatibility)

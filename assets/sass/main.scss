@@ -5,6 +5,7 @@
 
 html {
     font-size: $font-size-root;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -16,10 +17,60 @@ body {
 
 .footer {
     margin-top: auto;
-  }
+    background-color: $dark;
+    color: rgba(255, 255, 255, 0.7);
+    
+    a {
+        color: $info;
+        &:hover {
+            color: lighten($info, 10%);
+        }
+    }
+}
 
-  .chroma { 
+.chroma { 
     color: #d0d0d0; 
     background-color: $dark;
     padding: $spacer;
+}
+
+.jumbotron {
+    padding: 4rem 0;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+}
+
+.btn {
+    transition: all 0.2s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.gap-3 {
+    gap: 1rem !important;
+}
+
+pre {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }

@@ -269,7 +269,7 @@ public class BusinessService
 
 ---
 
-## What's New in Aspekt 2.0
+## What's New in Aspekt
 
 - ✨ **Modern .NET Support**: Targets .NET 8.0, .NET 6.0, and .NET Standard 2.1
 - ⚡ **Performance**: Benefits from latest .NET performance improvements
