@@ -18,14 +18,14 @@ body {
 .footer {
     margin-top: auto;
     background: linear-gradient(135deg, darken($dark, 5%) 0%, $dark 100%);
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
     border-top: 3px solid $primary;
     
     a {
-        color: $info;
+        color: lighten($info, 15%);
         transition: all 0.3s ease;
         &:hover {
-            color: lighten($info, 10%);
+            color: lighten($info, 25%);
             transform: translateX(5px);
             display: inline-block;
         }
@@ -103,6 +103,14 @@ body {
     
     &.bg-dark {
         background: linear-gradient(135deg, $dark 0%, lighten($dark, 5%) 100%) !important;
+        
+        .card-title {
+            color: $white !important;
+        }
+        
+        .card-text {
+            color: rgba(255, 255, 255, 0.95) !important;
+        }
     }
     
     &.bg-white {
@@ -239,17 +247,41 @@ h2, h3 {
 }
 
 .lead {
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 // Statistic numbers styling
 .display-4 {
     font-weight: 700;
-    background: linear-gradient(135deg, currentColor 0%, lighten($primary, 20%) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+}
+
+// Better contrast for statistics section
+.text-primary {
+    color: darken($primary, 5%) !important;
+}
+
+.text-secondary {
+    color: darken($secondary, 10%) !important;
+}
+
+.text-success {
+    color: darken($success, 5%) !important;
+}
+
+.text-warning {
+    color: darken($warning, 15%) !important;
+}
+
+// Better paragraph contrast on light background
+p.lead:not(.jumbotron .lead) {
+    color: $text-dark !important;
+    text-shadow: none !important;
+}
+
+// Better text-muted contrast
+.text-muted {
+    color: $text-muted-custom !important;
 }
 
 // Enhanced badge/shield images
