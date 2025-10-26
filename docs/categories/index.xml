@@ -4,7 +4,7 @@
     <title>Categories on [ASPeKT] Project</title>
     <link>https://aspektproject.org/categories/</link>
     <description>Recent content in Categories on [ASPeKT] Project</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="https://aspektproject.org/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>

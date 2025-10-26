@@ -33,7 +33,7 @@ Install-Package Aspekt
 Or add it directly to your `.csproj` file:
 
 ```xml
-<PackageReference Include="Aspekt" Version="2.0.0" />
+<PackageReference Include="Aspekt" Version="2.1.0" />
 ```
 
 ### Your First Aspect
