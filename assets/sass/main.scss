@@ -35,11 +35,11 @@ body {
 .chroma { 
     color: #d0d0d0; 
     background-color: $dark;
-    padding: $spacer;
+    padding: map-get($spacers, 4);
 }
 
 .jumbotron {
-    padding: 6rem 0;
+    padding: map-get($spacers, 24) 0;
     min-height: 550px;
     display: flex;
     align-items: center;
@@ -211,9 +211,7 @@ body {
     }
 }
 
-.gap-3 {
-    gap: 1rem !important;
-}
+// Note: .gap-3 and other gap utilities are now auto-generated below with the modern spacing scale
 
 pre {
     border-radius: 0.75rem;
@@ -292,3 +290,39 @@ img[src*="shields.io"], img[src*="img.shields.io"] {
         transform: scale(1.05);
     }
 }
+
+// Modern Fluent Design Gap Utilities
+// These provide comprehensive spacing for flexbox and grid layouts
+@each $key, $value in $gap-spacers {
+    .gap-#{$key} {
+        gap: $value !important;
+    }
+    .gap-x-#{$key} {
+        column-gap: $value !important;
+    }
+    .gap-y-#{$key} {
+        row-gap: $value !important;
+    }
+}
+
+// Modern spacing utilities with Fluent naming
+.space-inset-xs { padding: map-get($spacers, 2) !important; }      // 8px
+.space-inset-sm { padding: map-get($spacers, 3) !important; }      // 12px
+.space-inset-md { padding: map-get($spacers, 4) !important; }      // 16px
+.space-inset-lg { padding: map-get($spacers, 6) !important; }      // 24px
+.space-inset-xl { padding: map-get($spacers, 8) !important; }      // 32px
+.space-inset-xxl { padding: map-get($spacers, 12) !important; }    // 48px
+
+.space-stack-xs { margin-bottom: map-get($spacers, 2) !important; }  // 8px
+.space-stack-sm { margin-bottom: map-get($spacers, 3) !important; }  // 12px
+.space-stack-md { margin-bottom: map-get($spacers, 4) !important; }  // 16px
+.space-stack-lg { margin-bottom: map-get($spacers, 6) !important; }  // 24px
+.space-stack-xl { margin-bottom: map-get($spacers, 8) !important; }  // 32px
+.space-stack-xxl { margin-bottom: map-get($spacers, 12) !important; } // 48px
+
+.space-inline-xs { margin-right: map-get($spacers, 2) !important; }  // 8px
+.space-inline-sm { margin-right: map-get($spacers, 3) !important; }  // 12px
+.space-inline-md { margin-right: map-get($spacers, 4) !important; }  // 16px
+.space-inline-lg { margin-right: map-get($spacers, 6) !important; }  // 24px
+.space-inline-xl { margin-right: map-get($spacers, 8) !important; }  // 32px
+.space-inline-xxl { margin-right: map-get($spacers, 12) !important; } // 48px
