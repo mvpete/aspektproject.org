@@ -5,3 +5,8 @@ theme = "aspekt"
 pygmentsUseClasses = "true"
 pygmentsStyle = "solarized-dark256"
 publishDir = "docs"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

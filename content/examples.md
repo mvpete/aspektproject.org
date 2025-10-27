@@ -11,7 +11,6 @@ layout: "simple"
 Get going with comprehensive examples that show you the power of aspect oriented programming with modern .NET 8.0/6.0.
 
 {{< button href= "https://github.com/mvpete/aspekt" class= "btn-outline-primary" >}}Download Now{{</ button >}}
-
 {{% /jumbotron %}}
 
 {{% content %}}
