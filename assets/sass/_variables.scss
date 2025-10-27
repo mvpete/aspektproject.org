@@ -61,6 +61,7 @@ $code-bg: black;
 
 // Modern Fluent Spacing System
 // Base unit: 4px for granular control
+// Assumes default browser font-size of 16px (1rem = 16px, therefore 0.25rem = 4px)
 // This provides the foundation for consistent spacing throughout the design
 
 $spacer-base: 0.25rem; // 4px base unit

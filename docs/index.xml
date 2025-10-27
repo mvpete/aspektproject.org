@@ -4,7 +4,7 @@
     <title>[ASPeKT] Project</title>
     <link>https://aspektproject.org/</link>
     <description>Recent content on [ASPeKT] Project</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="https://aspektproject.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -12,28 +12,21 @@
       <link>https://aspektproject.org/documentation/advanced-topics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://aspektproject.org/documentation/advanced-topics/</guid>
-      <description>Advanced Topics Return Value Interception Implement IAspectExitHandler&amp;lt;T&amp;gt; to intercept and modify return values:
-using Aspekt; public class ValidationAspect : Aspect, IAspectExitHandler&amp;lt;string&amp;gt; { public string OnExit(MethodArguments args, string result) { // Validate or transform the return value if (string.IsNullOrEmpty(result)) { return &amp;#34;Default Value&amp;#34;; } return result.Trim(); } } public class DataService { [ValidationAspect] public string GetUserName(int userId) { // Your implementation return &amp;#34; John Doe &amp;#34;; } // Returns: &amp;#34;John Doe&amp;#34; (trimmed) } Multiple Aspect Handlers A single aspect can handle multiple return types:</description>
+      <description>Advanced Topics Return Value Interception Implement IAspectExitHandler&amp;lt;T&amp;gt; to intercept and modify return values:&#xA;using Aspekt; public class ValidationAspect : Aspect, IAspectExitHandler&amp;lt;string&amp;gt; { public string OnExit(MethodArguments args, string result) { // Validate or transform the return value if (string.IsNullOrEmpty(result)) { return &amp;#34;Default Value&amp;#34;; } return result.Trim(); } } public class DataService { [ValidationAspect] public string GetUserName(int userId) { // Your implementation return &amp;#34; John Doe &amp;#34;; } // Returns: &amp;#34;John Doe&amp;#34; (trimmed) } Multiple Aspect Handlers A single aspect can handle multiple return types:</description>
     </item>
     <item>
       <title>Examples</title>
       <link>https://aspektproject.org/examples/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://aspektproject.org/examples/</guid>
-      <description>Examples Get going with comprehensive examples that show you the power of aspect oriented programming with modern .NET 8.0/6.0.
-Download Now
-&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; Getting Started with Aspekt Aspekt is now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1, bringing you the latest performance improvements and modern C# features.
-Installation Install Aspekt via NuGet:
-Basic Logging Aspect Create your first aspect to add logging to any method:
-Performance Monitoring Track execution time of your methods:</description>
+      <description>Examples Get going with comprehensive examples that show you the power of aspect oriented programming with modern .NET 8.0/6.0.&#xA;Download Now&#xA;&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; Getting Started with Aspekt Aspekt is now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1, bringing you the latest performance improvements and modern C# features.&#xA;Installation Install Aspekt via NuGet:&#xA;Basic Logging Aspect Create your first aspect to add logging to any method:&#xA;Performance Monitoring Track execution time of your methods:</description>
     </item>
     <item>
       <title>Getting Started</title>
       <link>https://aspektproject.org/documentation/getting-started/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://aspektproject.org/documentation/getting-started/</guid>
-      <description>Getting Started Introduction Get started with Aspekt - the lightweight, free and open-source AOP library, now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1. Add cross-cutting concerns to your applications with minimal effort and maximum clarity.
-Quick Start Prerequisites .NET 8.0 SDK, .NET 6.0 SDK, or any .NET Standard 2.1 compatible runtime Your favorite IDE (Visual Studio 2022, VS Code, or Rider) Installation via NuGet Add Aspekt to your project using the .</description>
+      <description>Getting Started Introduction Get started with Aspekt - the lightweight, free and open-source AOP library, now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1. Add cross-cutting concerns to your applications with minimal effort and maximum clarity.&#xA;Quick Start Prerequisites .NET 8.0 SDK, .NET 6.0 SDK, or any .NET Standard 2.1 compatible runtime Your favorite IDE (Visual Studio 2022, VS Code, or Rider) Installation via NuGet Add Aspekt to your project using the .</description>
     </item>
   </channel>
 </rss>

@@ -211,7 +211,7 @@ body {
     }
 }
 
-// Note: .gap-3 and other gap utilities are now auto-generated below with the modern spacing scale
+// Note: Gap utilities (.gap-*, .gap-x-*, .gap-y-*) are auto-generated below in the "Modern Fluent Design Gap Utilities" section
 
 pre {
     border-radius: 0.75rem;
@@ -306,23 +306,33 @@ img[src*="shields.io"], img[src*="img.shields.io"] {
 }
 
 // Modern spacing utilities with Fluent naming
-.space-inset-xs { padding: map-get($spacers, 2) !important; }      // 8px
-.space-inset-sm { padding: map-get($spacers, 3) !important; }      // 12px
-.space-inset-md { padding: map-get($spacers, 4) !important; }      // 16px
-.space-inset-lg { padding: map-get($spacers, 6) !important; }      // 24px
-.space-inset-xl { padding: map-get($spacers, 8) !important; }      // 32px
-.space-inset-xxl { padding: map-get($spacers, 12) !important; }    // 48px
+// Using a map-based approach for maintainability
+$fluent-space-sizes: (
+  xs: 2,   // 8px
+  sm: 3,   // 12px
+  md: 4,   // 16px
+  lg: 6,   // 24px
+  xl: 8,   // 32px
+  xxl: 12  // 48px
+);
 
-.space-stack-xs { margin-bottom: map-get($spacers, 2) !important; }  // 8px
-.space-stack-sm { margin-bottom: map-get($spacers, 3) !important; }  // 12px
-.space-stack-md { margin-bottom: map-get($spacers, 4) !important; }  // 16px
-.space-stack-lg { margin-bottom: map-get($spacers, 6) !important; }  // 24px
-.space-stack-xl { margin-bottom: map-get($spacers, 8) !important; }  // 32px
-.space-stack-xxl { margin-bottom: map-get($spacers, 12) !important; } // 48px
+// Generate space-inset utilities (padding)
+@each $name, $key in $fluent-space-sizes {
+    .space-inset-#{$name} {
+        padding: map-get($spacers, $key) !important;
+    }
+}
 
-.space-inline-xs { margin-right: map-get($spacers, 2) !important; }  // 8px
-.space-inline-sm { margin-right: map-get($spacers, 3) !important; }  // 12px
-.space-inline-md { margin-right: map-get($spacers, 4) !important; }  // 16px
-.space-inline-lg { margin-right: map-get($spacers, 6) !important; }  // 24px
-.space-inline-xl { margin-right: map-get($spacers, 8) !important; }  // 32px
-.space-inline-xxl { margin-right: map-get($spacers, 12) !important; } // 48px
+// Generate space-stack utilities (margin-bottom)
+@each $name, $key in $fluent-space-sizes {
+    .space-stack-#{$name} {
+        margin-bottom: map-get($spacers, $key) !important;
+    }
+}
+
+// Generate space-inline utilities (margin-right)
+@each $name, $key in $fluent-space-sizes {
+    .space-inline-#{$name} {
+        margin-right: map-get($spacers, $key) !important;
+    }
+}
