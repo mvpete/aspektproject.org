@@ -4,7 +4,7 @@
     <title>[ASPeKT] Project</title>
     <link>https://aspektproject.org/</link>
     <description>Recent content on [ASPeKT] Project</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="https://aspektproject.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -19,7 +19,7 @@
       <link>https://aspektproject.org/examples/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://aspektproject.org/examples/</guid>
-      <description>Examples Get going with comprehensive examples that show you the power of aspect oriented programming with modern .NET 8.0/6.0.&#xA;Download Now&#xA;&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; Getting Started with Aspekt Aspekt is now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1, bringing you the latest performance improvements and modern C# features.&#xA;Installation Install Aspekt via NuGet:&#xA;Basic Logging Aspect Create your first aspect to add logging to any method:&#xA;Performance Monitoring Track execution time of your methods:</description>
+      <description>Examples Get going with comprehensive examples that show you the power of aspect oriented programming with modern .NET 8.0/6.0.&#xA;Download Now&#xA;Getting Started with Aspekt Aspekt is now modernized for .NET 8.0, .NET 6.0, and .NET Standard 2.1, bringing you the latest performance improvements and modern C# features.&#xA;Installation Install Aspekt via NuGet:&#xA;dotnet add package Aspekt Basic Logging Aspect Create your first aspect to add logging to any method:</description>
     </item>
     <item>
       <title>Getting Started</title>
