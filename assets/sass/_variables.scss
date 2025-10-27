@@ -59,8 +59,40 @@ $box-shadow: none;
 
 $code-bg: black;
 
-$navbar-padding-y: 0.5rem;
-$nav-link-padding-y: 0.5rem;
+// Modern Fluent Spacing System
+// Base unit: 4px for granular control
+// Assumes default browser font-size of 16px (1rem = 16px, therefore 0.25rem = 4px)
+// This provides the foundation for consistent spacing throughout the design
+
+$spacer-base: 0.25rem; // 4px base unit
+
+// Override Bootstrap's default spacer map with Fluent Design spacing scale
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,                        // 0px
+  1: $spacer-base,             // 4px
+  2: $spacer-base * 2,         // 8px
+  3: $spacer-base * 3,         // 12px
+  4: $spacer-base * 4,         // 16px
+  5: $spacer-base * 5,         // 20px
+  6: $spacer-base * 6,         // 24px
+  7: $spacer-base * 7,         // 28px
+  8: $spacer-base * 8,         // 32px
+  9: $spacer-base * 9,         // 36px
+  10: $spacer-base * 10,       // 40px
+  11: $spacer-base * 11,       // 44px
+  12: $spacer-base * 12,       // 48px
+  14: $spacer-base * 14,       // 56px
+  16: $spacer-base * 16,       // 64px
+  20: $spacer-base * 20,       // 80px
+  24: $spacer-base * 24,       // 96px
+);
+
+// Additional gap utilities for modern flexbox/grid layouts
+$gap-spacers: $spacers;
+
+$navbar-padding-y: map-get($spacers, 3);  // 12px
+$nav-link-padding-y: map-get($spacers, 3); // 12px
 
 $navbar-height: $font-size-base * $line-height-base + $nav-link-padding-y * 2 + $navbar-padding-y * 2;
 

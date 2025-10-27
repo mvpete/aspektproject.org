@@ -35,11 +35,11 @@ body {
 .chroma { 
     color: #d0d0d0; 
     background-color: $dark;
-    padding: $spacer;
+    padding: map-get($spacers, 4);
 }
 
 .jumbotron {
-    padding: 6rem 0;
+    padding: map-get($spacers, 24) 0;
     min-height: 550px;
     display: flex;
     align-items: center;
@@ -211,9 +211,7 @@ body {
     }
 }
 
-.gap-3 {
-    gap: 1rem !important;
-}
+// Note: Gap utilities (.gap-*, .gap-x-*, .gap-y-*) are auto-generated below in the "Modern Fluent Design Gap Utilities" section
 
 pre {
     border-radius: 0.75rem;
@@ -290,5 +288,51 @@ img[src*="shields.io"], img[src*="img.shields.io"] {
     
     &:hover {
         transform: scale(1.05);
+    }
+}
+
+// Modern Fluent Design Gap Utilities
+// These provide comprehensive spacing for flexbox and grid layouts
+@each $key, $value in $gap-spacers {
+    .gap-#{$key} {
+        gap: $value !important;
+    }
+    .gap-x-#{$key} {
+        column-gap: $value !important;
+    }
+    .gap-y-#{$key} {
+        row-gap: $value !important;
+    }
+}
+
+// Modern spacing utilities with Fluent naming
+// Using a map-based approach for maintainability
+$fluent-space-sizes: (
+  xs: 2,   // 8px
+  sm: 3,   // 12px
+  md: 4,   // 16px
+  lg: 6,   // 24px
+  xl: 8,   // 32px
+  xxl: 12  // 48px
+);
+
+// Generate space-inset utilities (padding)
+@each $name, $key in $fluent-space-sizes {
+    .space-inset-#{$name} {
+        padding: map-get($spacers, $key) !important;
+    }
+}
+
+// Generate space-stack utilities (margin-bottom)
+@each $name, $key in $fluent-space-sizes {
+    .space-stack-#{$name} {
+        margin-bottom: map-get($spacers, $key) !important;
+    }
+}
+
+// Generate space-inline utilities (margin-right)
+@each $name, $key in $fluent-space-sizes {
+    .space-inline-#{$name} {
+        margin-right: map-get($spacers, $key) !important;
     }
 }
